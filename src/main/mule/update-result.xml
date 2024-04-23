@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="5a6160c8-2d62-4f26-a1ae-fc37af788609" >
+		<db:oracle-connection host="localhost" user="system" password="Raju@725926" instance="xe" />
+	</db:config>
+	<flow name="post:\update:application\json:10thresult-config">
+		<logger level="INFO" doc:name="Logger" doc:id="6c58f3c1-b2d7-44ea-8305-a319ca8f1163" message="Update flow started" />
+		<ee:transform doc:name="Transform Message1" doc:id="18c7b823-47bd-4a75-9e77-cea156d1591c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	Social: payload.Social,
+	Telugu: payload.Telugu,
+	English: payload.English,
+	Maths: payload.Maths,
+	Hallticketno: payload.Hallticketno,
+	Science: payload.Science,
+	Hindi: payload.Hindi,
+	StudentName: payload.StudentName,
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<db:insert doc:id="ad72fc90-7cfb-41c9-8769-a070e24e8d99" config-ref="Database_Config1" doc:name="Insert" >
+			<db:sql ><![CDATA[insert into Result(StudentName, Hallticketno, Telugu, English, Hindi, Maths, Science, Social) VALUES(:StudentName, :Hallticketno, :Telugu, :English, :Hindi, :Maths, :Science, :Social)]]></db:sql>
+			<db:input-parameters ><![CDATA[#[payload]]]></db:input-parameters>
+		</db:insert>
+		<logger level="INFO" doc:name="Logger1" doc:id="2187c186-406b-4e9e-8cf7-53786fe8b3b2" message="output completed" />
+    
+</flow></mule>
