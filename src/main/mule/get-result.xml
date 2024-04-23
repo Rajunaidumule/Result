@@ -18,7 +18,7 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 output application/json
 ---
 payload map(result, indexofResult)->{
-"Studentname": result.StudentName,
+"Studentnamechanges": result.StudentName,
 "hallticketno": result.Hallticketno,
 "Telugu": result.Telugu,
 "English": result.English,
