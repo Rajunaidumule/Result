@@ -1,0 +1,148 @@
+#%RAML 1.0
+title: 10thResult
+baseUri: http://localhost:8093/10thresult
+/update:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          StudentName:
+            type: string
+            required: true
+            example: "pullayyaa"
+          Hallticketno:
+            type: number
+            required: true
+            example: 107
+          Telugu:
+            type: number
+            required: true
+            example: 17
+          English:
+            type: number
+            required: true
+            example: 17
+          Hindi:
+            type: number
+            required: true
+            example: 17
+          Maths:
+            type: number
+            required: true
+            example: 17
+          Science:
+            type: number
+            required: true
+            example: 17
+          Social:
+            type: number
+            required: true
+            example: 17
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              StudentName:
+                type: string
+                required: true
+                example: "pullayyaa"
+              Hallticketno:
+                type: number
+                required: true
+                example: 107
+              Telugu:
+                type: number
+                required: true
+                example: 17
+              English:
+                type: number
+                required: true
+                example: 17
+              Hindi:
+                type: number
+                required: true
+                example: 17
+              Maths:
+                type: number
+                required: true
+                example: 17
+              Science:
+                type: number
+                required: true
+                example: 17
+              Social:
+                type: number
+                required: true
+                example: 17
+            example:
+              {
+                StudentName: "pullayyaa",
+                Hallticketno: 107,
+                "Telugu": 105,
+                "English": 55,
+                "Hindi": 60,
+                "Maths": 62,
+                "Science": 76,
+                "Social": 84
+              }
+/getresults:
+  get:
+    queryParameters:
+      Hallticketno:
+        type: number
+        required: true
+        example: 101
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              StudentName:
+                type: string
+                required: true
+                example: "pullayyaa"
+              Hallticketno:
+                type: number
+                required: true
+                example: 107
+              Telugu:
+                type: number
+                required: true
+                example: 17
+              English:
+                type: number
+                required: true
+                example: 17
+              Hindi:
+                type: number
+                required: true
+                example: 17
+              Maths:
+                type: number
+                required: true
+                example: 17
+              Science:
+                type: number
+                required: true
+                example: 17
+              Social:
+                type: number
+                required: true
+                example: 17
+            example:
+              {
+                StudentName: "pullayyaa",
+                Hallticketno: 107,
+                "Telugu": 105,
+                "English": 55,
+                "Hindi": 60,
+                "Maths": 62,
+                "Science": 76,
+                "Social": 84
+              }
+                  
+          
