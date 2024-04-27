@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="update-result-test-suite.xml" />
+	<munit:test name="update-result-test-suite-post:\update:application\json:10thresult-configTest" doc:id="78d18f5b-3aac-41bc-9bee-8b7f2143e35a" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to post:\update:application\json:10thresult-config" doc:id="59b09acc-069f-407c-a635-bc00a5e4eb5f" name="post:\update:application\json:10thresult-config"/>
+		</munit:execution>
+		<munit:validation >
+			<logger level="INFO" doc:name="info Log" doc:id="4ea66d83-7301-409c-a506-4acbe7876e2f" message="#[payload]"/>
+			<munit-tools:assert doc:name="Assert Payload Not Null" doc:id="d271b255-e2bf-45f1-be8a-7f272cb29acd" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
