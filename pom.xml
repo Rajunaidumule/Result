@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -16,6 +18,132 @@
 		<app.runtime>4.5.3</app.runtime>
 		<mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
 	</properties>
+	<profiles>
+		<profile>
+			<id>Test</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+								<applicationName>abc-test-Result10th</applicationName>
+								<environment>Test</environment>
+								<workers>1</workers>
+								<workerType>MICRO</workerType>
+								<objectStoreV2>true</objectStoreV2>
+								<properties>
+									<http.port>8081</http.port>
+									<env>test</env>
+									<api.id>19445972</api.id>
+									<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+									<anypoint.platform.base_uri>
+										https://anypoint.mulesoft.com
+									</anypoint.platform.base_uri>
+									<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+								</properties>
+							</cloudHubDeployment>
+							<classifier>mule-application</classifier>
+							<sharedLibraries>
+								<sharedLibrary>
+									<groupId>com.mycompany</groupId>
+									<artifactId>ojdbc11</artifactId>
+								</sharedLibrary>
+							</sharedLibraries>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<profile>
+			<id>UAT</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+								<applicationName>abc-UAT-Result10th</applicationName>
+								<environment>UAT</environment>
+								<workers>1</workers>
+								<workerType>MICRO</workerType>
+								<objectStoreV2>true</objectStoreV2>
+								<properties>
+									<http.port>8081</http.port>
+									<env>prod</env>
+									<api.id>19449424</api.id>
+									<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+									<anypoint.platform.base_uri>
+										https://anypoint.mulesoft.com
+									</anypoint.platform.base_uri>
+									<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+								</properties>
+							</cloudHubDeployment>
+							<classifier>mule-application</classifier>
+							<sharedLibraries>
+								<sharedLibrary>
+									<groupId>com.mycompany</groupId>
+									<artifactId>ojdbc11</artifactId>
+								</sharedLibrary>
+							</sharedLibraries>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+		<profile>
+			<id>Dev</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+								<applicationName>abc-Dev-Result10th</applicationName>
+								<environment>Dev</environment>
+								<workers>1</workers>
+								<workerType>MICRO</workerType>
+								<objectStoreV2>true</objectStoreV2>
+								<properties>
+									<http.port>8081</http.port>
+									<env>dev</env>
+									<api.id>19419951</api.id>
+									<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+									<anypoint.platform.base_uri>
+										https://anypoint.mulesoft.com
+									</anypoint.platform.base_uri>
+									<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+								</properties>
+							</cloudHubDeployment>
+							<classifier>mule-application</classifier>
+							<sharedLibraries>
+								<sharedLibrary>
+									<groupId>com.mycompany</groupId>
+									<artifactId>ojdbc11</artifactId>
+								</sharedLibrary>
+							</sharedLibraries>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
@@ -30,18 +158,24 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>4.6.2</muleVersion>
+						<username>${username}</username>
+						<password>${password}</password>
+						<region>us-east-1</region>
+					</cloudHubDeployment>
+					<classifier>mule-application</classifier>
 					<sharedLibraries>
 						<sharedLibrary>
 							<groupId>com.mycompany</groupId>
-							<artifactId>ojdbc6</artifactId>
+							<artifactId>ojdbc11</artifactId>
 						</sharedLibrary>
 					</sharedLibraries>
-					<classifier>---- select project type ----</classifier>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -69,8 +203,13 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mycompany</groupId>
-			<artifactId>ojdbc6</artifactId>
+			<artifactId>ojdbc11</artifactId>
 			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.2.0</version>
 		</dependency>
 	</dependencies>
 
@@ -100,5 +239,4 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>
